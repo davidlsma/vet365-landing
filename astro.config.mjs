@@ -3,7 +3,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   output: 'static',
-  base: '/vet365-landing',
   build: {
     assets: 'static',
   },
