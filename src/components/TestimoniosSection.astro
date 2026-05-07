@@ -1,0 +1,63 @@
+---
+const testimonios = [
+  {
+    nombre: '[PLACEHOLDER: Nombre del cliente]',
+    mascota: '[PLACEHOLDER: Tutor de mascota y raza]',
+    texto: '[PLACEHOLDER: Testimonio real de un cliente satisfecho con la atención en VET365. Puede mencionar el servicio utilizado y la experiencia con el equipo.]',
+    estrellas: 5,
+  },
+  {
+    nombre: '[PLACEHOLDER: Nombre del cliente]',
+    mascota: '[PLACEHOLDER: Tutor de mascota y raza]',
+    texto: '[PLACEHOLDER: Testimonio que destaca la rapidez y el profesionalismo del equipo veterinario, especialmente en situaciones de urgencia.]',
+    estrellas: 5,
+  },
+  {
+    nombre: '[PLACEHOLDER: Nombre del cliente]',
+    mascota: '[PLACEHOLDER: Tutor de mascota y raza]',
+    texto: '[PLACEHOLDER: Testimonio que resalta el trato cálido del personal y la confianza que genera VET365 para el cuidado de su mascota.]',
+    estrellas: 5,
+  },
+];
+---
+
+<section id="testimonios" class="section-padding" style="background-color: #FFFFFF;">
+  <div class="page-container">
+
+    <div class="fade-in" style="text-align: center; margin-bottom: 4rem;">
+      <p style="color: #F28C28; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; margin-bottom: 0.75rem;">
+        Lo que dicen
+      </p>
+      <h2 class="heading-xl" style="color: #333333; font-weight: 900; line-height: 1.05;">
+        Testimonios
+      </h2>
+    </div>
+
+    <div class="testimonios-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+      {testimonios.map(t => (
+        <div class="fade-in" style="background-color: #F0F7F5; border-radius: 1.25rem; padding: 2rem; display: flex; flex-direction: column;">
+          <!-- Estrellas -->
+          <div style="display: flex; gap: 0.25rem; margin-bottom: 1.25rem;" aria-label={`${t.estrellas} estrellas`}>
+            {Array.from({ length: t.estrellas }).map(() => (
+              <span style="color: #F28C28; font-size: 1.1rem;" aria-hidden="true">★</span>
+            ))}
+          </div>
+          <p style="color: #333333; opacity: 0.7; line-height: 1.75; font-style: italic; flex: 1; margin-bottom: 1.5rem;">
+            "{t.texto}"
+          </p>
+          <div style="padding-top: 1.25rem; border-top: 1px solid rgba(61,152,128,0.15);">
+            <p style="font-weight: 900; color: #333333;">{t.nombre}</p>
+            <p style="font-size: 0.85rem; color: #3D9880; font-weight: 700; margin-top: 0.2rem;">{t.mascota}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media (max-width: 767px) {
+    .testimonios-grid { grid-template-columns: 1fr !important; }
+  }
+</style>

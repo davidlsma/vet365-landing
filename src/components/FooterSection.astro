@@ -1,0 +1,94 @@
+---
+const whatsappUrl = 'https://wa.me/542644421666';
+const instagramUrl = 'https://instagram.com/vet365ok';
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: '#nosotros',  label: 'Nosotros' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#historias', label: 'Historias' },
+  { href: '#ubicacion', label: 'Ubicación' },
+  { href: '#contacto',  label: 'Contacto' },
+  { href: '#faq',       label: 'FAQ' },
+];
+
+const serviciosFooter = [
+  'Consulta General',
+  'Vacunación',
+  'Cirugía Veterinaria',
+  'Urgencias 24hs',
+  'Atención a Domicilio',
+];
+---
+
+<footer style="background-color: #1a1a1a; padding: 4.5rem 0 2.5rem;">
+  <div class="page-container">
+
+    <div class="footer-grid" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3.5rem; margin-bottom: 3rem;">
+
+      <!-- Logo + descripción -->
+      <div class="footer-col-logo">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <div style="background: white; border-radius: 9999px; padding: 0.4rem; box-shadow: 0 2px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
+            <img
+              src="assets/images/logo-nav.png"
+              alt="VET365"
+              style="height: 3.5rem; width: auto; object-fit: contain; display: block;"
+            />
+          </div>
+          <span style="font-size: 1.6rem; font-weight: 900; letter-spacing: 0.12em;">
+            <span style="color: #3D9880;">VET</span><span style="color: #F28C28;">365</span>
+          </span>
+        </div>
+        <p style="color: rgba(255,255,255,0.45); font-size: 0.875rem; line-height: 1.75; max-width: 28ch;">
+          Clínica veterinaria en San Juan. Atención médica integral para tu mascota los 365 días del año.
+        </p>
+      </div>
+
+      <!-- Servicios -->
+      <div class="footer-col-servicios">
+        <h3 style="color: white; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.7rem; margin-bottom: 1.25rem;">Servicios</h3>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem;">
+          {serviciosFooter.map(s => (
+            <li style="color: rgba(255,255,255,0.42); font-size: 0.875rem;">{s}</li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Navegación -->
+      <div class="footer-col-nav">
+        <h3 style="color: white; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.7rem; margin-bottom: 1.25rem;">Navegación</h3>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem;">
+          {navLinks.map(link => (
+            <li>
+              <a href={link.href} style="color: rgba(255,255,255,0.42); font-size: 0.875rem; text-decoration: none; transition: color 0.2s;"
+                 onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.42)'">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+
+    <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; text-align: center;">
+      <p style="color: rgba(255,255,255,0.22); font-size: 0.75rem;">
+        © {year} VET365 – Todos los derechos reservados.
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  @media (max-width: 767px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 2rem 1.5rem !important;
+    }
+    .footer-col-logo {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

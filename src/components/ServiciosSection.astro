@@ -1,0 +1,105 @@
+---
+import { servicios } from '../data/servicios';
+---
+
+<section id="servicios" class="section-padding" style="background-color: #FFFFFF;">
+  <div class="page-container">
+
+    <div class="fade-in" style="text-align: center; margin-bottom: 4rem;">
+      <p style="color: #F28C28; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; margin-bottom: 0.75rem;">
+        Lo que hacemos
+      </p>
+      <h2 class="heading-xl" style="color: #333333; font-weight: 900; line-height: 1.05;">
+        Nuestros servicios
+      </h2>
+    </div>
+
+    <!-- Carrusel con flechas laterales -->
+    <div style="position: relative; display: flex; align-items: center; gap: 1rem;">
+
+      <button id="srv-prev" aria-label="Anterior" style="flex-shrink: 0; width: 2.75rem; height: 2.75rem; border-radius: 50%; border: none; background: #3D9880; color: white; font-size: 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, color 0.2s; z-index: 1;">&#8592;</button>
+
+      <div id="servicios-track-wrapper" style="overflow: hidden; flex: 1;">
+        <div id="servicios-track" style="display: flex; gap: 1.25rem; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);">
+          {servicios.map(servicio => (
+            <div class="servicio-card" style="flex: 0 0 calc(33.333% - 0.84rem); background-color: #F0F7F5; border-radius: 1.25rem; padding: 1.75rem; transition: background-color 0.3s, transform 0.3s; cursor: default; box-sizing: border-box;">
+              <div style="font-size: 2.5rem; margin-bottom: 1rem;">{servicio.icono}</div>
+              <h3 style="font-weight: 800; font-size: 1.05rem; color: #333333; margin-bottom: 0.5rem;">{servicio.nombre}</h3>
+              <p style="font-size: 0.875rem; color: #333333; opacity: 0.65; line-height: 1.65;">{servicio.descripcion}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button id="srv-next" aria-label="Siguiente" style="flex-shrink: 0; width: 2.75rem; height: 2.75rem; border-radius: 50%; border: none; background: #3D9880; color: white; font-size: 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, color 0.2s; z-index: 1;">&#8594;</button>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .servicio-card:hover {
+    background-color: #3D9880;
+    transform: translateY(-4px);
+  }
+  .servicio-card:hover h3,
+  .servicio-card:hover p {
+    color: white;
+    opacity: 1;
+  }
+  #srv-prev, #srv-next {
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+  }
+  #srv-prev:hover {
+    background: #2e7a65;
+    transform: translateX(-3px) scale(1.08);
+  }
+  #srv-next:hover {
+    background: #2e7a65;
+    transform: translateX(3px) scale(1.08);
+  }
+  #srv-prev:active {
+    transform: translateX(-1px) scale(0.97);
+  }
+  #srv-next:active {
+    transform: translateX(1px) scale(0.97);
+  }
+  @media (max-width: 1023px) {
+    .servicio-card { flex: 0 0 calc(50% - 0.625rem) !important; }
+  }
+  @media (max-width: 599px) {
+    .servicio-card { flex: 0 0 calc(100%) !important; padding: 1rem !important; }
+    .servicio-card > div:first-child { font-size: 1.75rem !important; margin-bottom: 0.5rem !important; }
+    .servicio-card h3 { font-size: 0.85rem !important; margin-bottom: 0.25rem !important; }
+    .servicio-card p { font-size: 0.78rem !important; line-height: 1.5 !important; }
+  }
+</style>
+
+<script>
+  const track = document.getElementById('servicios-track') as HTMLElement;
+  const prev  = document.getElementById('srv-prev') as HTMLButtonElement;
+  const next  = document.getElementById('srv-next') as HTMLButtonElement;
+
+  function getVisible() {
+    const w = window.innerWidth;
+    if (w <= 599)  return 1;
+    if (w <= 1023) return 2;
+    return 3;
+  }
+
+  const total = track.children.length;
+  let current = 0;
+
+  function move(dir: number) {
+    const visible = getVisible();
+    const max = total - visible;
+    current = Math.max(0, Math.min(current + dir, max));
+    const cardW = (track.children[0] as HTMLElement).offsetWidth + 20; // gap = 1.25rem ≈ 20px
+    track.style.transform = `translateX(-${current * cardW}px)`;
+  }
+
+  prev.addEventListener('click', () => move(-1));
+  next.addEventListener('click', () => move(1));
+  window.addEventListener('resize', () => { current = 0; track.style.transform = 'translateX(0)'; });
+</script>

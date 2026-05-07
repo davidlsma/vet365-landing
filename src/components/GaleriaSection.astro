@@ -1,0 +1,48 @@
+---
+const fotos = [
+  { src: 'assets/images/foto-1.jpg', alt: 'VET365 – Atención veterinaria' },
+  { src: 'assets/images/foto-2.jpg', alt: 'VET365 – Instalaciones' },
+  { src: 'assets/images/foto-3.jpg', alt: 'VET365 – Consulta veterinaria' },
+  { src: 'assets/images/foto-4.jpg', alt: 'VET365 – Cuidado de mascotas' },
+  { src: 'assets/images/foto-5.jpg', alt: 'VET365 – Equipo profesional' },
+  { src: 'assets/images/foto-6.jpg', alt: 'VET365 – Diagnóstico' },
+  { src: 'assets/images/foto-7.jpg', alt: 'VET365 – Tratamientos' },
+  { src: 'assets/images/foto-8.jpg', alt: 'VET365 – Mascotas felices' },
+];
+---
+
+<section id="galeria" class="section-padding" style="background-color: #3D9880;">
+  <div class="page-container">
+
+    <div class="fade-in" style="text-align: center; margin-bottom: 4rem;">
+      <p style="color: rgba(255,255,255,0.6); font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; margin-bottom: 0.75rem;">
+        Nuestro trabajo
+      </p>
+      <h2 class="heading-xl" style="color: white; font-weight: 900; line-height: 1.05;">
+        Galería
+      </h2>
+    </div>
+
+    <div class="galeria-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.875rem;">
+      {fotos.map(foto => (
+        <div class="fade-in" style="overflow: hidden; border-radius: 1rem; aspect-ratio: 1 / 1;">
+          <img
+            src={foto.src}
+            alt={foto.alt}
+            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
+            loading="lazy"
+            onmouseover="this.style.transform='scale(1.08)'"
+            onmouseout="this.style.transform='scale(1)'"
+          />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @media (max-width: 767px) {
+    .galeria-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+</style>

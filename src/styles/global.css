@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --color-primary:      #3D9880;
+  --color-primary-light:#58B39A;
+  --color-accent:       #F28C28;
+  --color-surface:      #FFFFFF;
+  --color-surface-alt:  #F0F7F5;
+  --color-on-surface:   #333333;
+  --nav-blur: 20px;
+}
+
+/* ===== RESET ===== */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: 'Nunito', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Offset para nav fijo */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* ===== LAYOUT ===== */
+.page-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 5vw, 4rem);
+}
+
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* ===== TIPOGRAFÍA FLUID ===== */
+.heading-display { font-size: clamp(3rem, 8vw, 7rem); }
+.heading-xl      { font-size: clamp(2rem, 5vw, 3.75rem); }
+.heading-lg      { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+.heading-md      { font-size: clamp(1.25rem, 2vw, 1.75rem); }
+.body-lg         { font-size: clamp(1rem, 1.5vw, 1.125rem); }
+
+/* ===== FADE-IN ===== */
+.fade-in { will-change: transform; }

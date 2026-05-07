@@ -1,0 +1,66 @@
+---
+const horarios = [
+  { dias: 'Lunes a Lunes', horario: '09:00 – 18:30' },
+];
+---
+
+<section id="ubicacion" class="section-padding" style="background-color: #F0F7F5;">
+  <div class="page-container">
+
+    <div class="fade-in" style="text-align: center; margin-bottom: 4rem;">
+      <p style="color: #F28C28; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; margin-bottom: 0.75rem;">
+        Dónde encontrarnos
+      </p>
+      <h2 class="heading-xl" style="color: #333333; font-weight: 900; line-height: 1.05;">
+        Ubicación y horarios
+      </h2>
+    </div>
+
+    <div class="ubicacion-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+
+      <!-- Horarios -->
+      <div class="fade-in" style="background: white; border-radius: 1.25rem; padding: 1.75rem; box-shadow: 0 2px 16px rgba(0,0,0,0.05);">
+        <p style="color: #3D9880; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.7rem; margin-bottom: 1rem;">Horarios de atención</p>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          {horarios.map(h => (
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color: #333333; font-weight: 500;">{h.dias}</span>
+              <span style="color: #333333; font-weight: 900;">{h.horario}</span>
+            </div>
+          ))}
+          <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #f3f4f6;">
+            <p style="color: #F28C28; font-weight: 800; font-size: 0.875rem;">
+              🚨 Urgencias disponibles 24hs · 365 días
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mapa -->
+      <div class="fade-in" style="border-radius: 1.25rem; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.1); height: 320px;">
+        <iframe
+          src="https://maps.google.com/maps?q=Pcia+de+Tucuman+812+Norte+J5400+Concepcion+San+Juan+Argentina&output=embed"
+          width="100%"
+          height="100%"
+          style="border:0; display: block;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación VET365 – Pcia de Tucumán 812 Norte, J5400 Concepción, San Juan"
+        ></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 767px) {
+    #ubicacion .ubicacion-grid {
+      grid-template-columns: 1fr !important;
+    }
+    #ubicacion .ubicacion-grid > div:last-child {
+      height: 320px !important;
+    }
+  }
+</style>

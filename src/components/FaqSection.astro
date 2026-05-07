@@ -1,0 +1,97 @@
+---
+const faqs = [
+  {
+    pregunta: '¿Cada cuánto debo llevar a mi mascota al veterinario?',
+    respuesta: 'Se recomienda realizar controles veterinarios al menos una vez al año. En cachorros, mascotas mayores o con enfermedades, las visitas pueden ser más frecuentes para asegurar un seguimiento adecuado.',
+  },
+  {
+    pregunta: '¿Qué vacunas necesita mi perro o gato?',
+    respuesta: 'Las vacunas dependen de la edad, especie y estilo de vida de tu mascota. Mantener el calendario de vacunación al día es fundamental para prevenir enfermedades graves y proteger su salud.',
+  },
+  {
+    pregunta: '¿Cómo sé si mi mascota necesita atención de urgencia?',
+    respuesta: 'Si presenta síntomas como dificultad para respirar, vómitos constantes, convulsiones, pérdida de movilidad, sangrado o decaimiento extremo, es importante acudir inmediatamente a una guardia veterinaria.',
+  },
+  {
+    pregunta: '¿Cada cuánto debo desparasitar a mi mascota?',
+    respuesta: 'La desparasitación debe realizarse periódicamente según la edad y hábitos de tu mascota. Un veterinario podrá indicar el plan más adecuado para mantenerla protegida.',
+  },
+];
+---
+
+<section id="faq" class="section-padding" style="background-color: #FFFFFF;">
+  <div class="page-container">
+
+    <div class="fade-in" style="text-align: center; margin-bottom: 3rem;">
+      <p style="color: #F28C28; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; margin-bottom: 0.75rem;">
+        Dudas frecuentes
+      </p>
+      <h2 class="heading-xl" style="color: #333333; font-weight: 900; line-height: 1.05;">
+        Lo que más nos preguntan
+      </h2>
+    </div>
+
+    <div class="fade-in" style="max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem;">
+      {faqs.map((faq, i) => (
+        <div class="faq-item" style="border: 1px solid #e5eeea; border-radius: 1rem; overflow: hidden;">
+          <button
+            class="faq-btn"
+            aria-expanded="false"
+            style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; background: #F0F7F5; border: none; cursor: pointer; text-align: left; gap: 1rem;"
+          >
+            <span style="font-weight: 800; font-size: 0.95rem; color: #333333;">{faq.pregunta}</span>
+            <span class="faq-icon" style="flex-shrink: 0; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: #3D9880; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: transform 0.3s;">+</span>
+          </button>
+          <div class="faq-answer" style="overflow: hidden; transition: max-height 0.35s ease;">
+            <p style="padding: 0 1.5rem 1.25rem; color: #333333; opacity: 0.7; font-size: 0.9rem; line-height: 1.75;">{faq.respuesta}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .faq-btn:hover {
+    background: #e4f0ec;
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+  }
+  .faq-item.open .faq-btn {
+    background: #F0F7F5;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item') as HTMLElement;
+      const answer = item.querySelector('.faq-answer') as HTMLElement;
+      const isOpen = item.classList.contains('open');
+
+      // Cerrar todos
+      document.querySelectorAll('.faq-item').forEach(el => {
+        el.classList.remove('open');
+        (el.querySelector('.faq-answer') as HTMLElement).style.maxHeight = '0';
+        el.querySelector('.faq-btn')?.setAttribute('aria-expanded', 'false');
+      });
+
+      // Abrir el clickeado si estaba cerrado
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Estado inicial: todos cerrados
+  document.querySelectorAll('.faq-answer').forEach(el => {
+    (el as HTMLElement).style.maxHeight = '0';
+  });
+</script>

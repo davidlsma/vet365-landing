@@ -1,0 +1,118 @@
+---
+const equipo = [
+  { nombre: 'Dra. Gutierrez', rol: 'Médica Veterinaria', imagen: 'assets/images/equipo-1.png' },
+  { nombre: 'Dra. Lopez',    rol: 'Médica Veterinaria', imagen: 'assets/images/equipo-2.png' },
+  { nombre: 'Dra. Barrientos', rol: 'Médica Veterinaria', imagen: 'assets/images/equipo-3.png' },
+  { nombre: 'Dr. Vitaz',     rol: 'Médico Veterinario', imagen: 'assets/images/equipo-4.png' },
+];
+
+const stats = [
+  { valor: '365', label: 'Días al año' },
+  { valor: '24hs', label: 'Urgencias' },
+  { valor: '15+', label: 'Servicios' },
+];
+---
+
+<section id="nosotros" class="section-padding" style="background-color: #F0F7F5;">
+  <div class="page-container">
+    <div class="nosotros-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+
+      <!-- Texto -->
+      <div class="fade-in">
+        <p style="color: #F28C28; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; margin-bottom: 1rem;">
+          Quiénes somos
+        </p>
+        <h2 class="heading-xl" style="color: #333333; font-weight: 900; line-height: 1.05; margin-bottom: 1.75rem;">
+          Cuidamos a tu mascota las 24 horas
+        </h2>
+        <p class="body-lg" style="color: #333333; opacity: 0.72; line-height: 1.8; max-width: 46ch;">
+          En VET365 trabajamos todos los días para brindar atención veterinaria profesional, cercana y de confianza. Contamos con guardia 24 hs, consultas clínicas, diagnóstico y cuidados integrales para acompañar a tu mascota en cada etapa de su vida, incluso en los momentos más urgentes.
+        </p>
+
+        <!-- Stats -->
+        <div class="fade-in" style="display: flex; gap: 3rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(61,152,128,0.2);">
+          {stats.map(s => (
+            <div style="text-align: center;">
+              <p style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 900; color: #3D9880; line-height: 1;">{s.valor}</p>
+              <p style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #333333; opacity: 0.5; margin-top: 0.4rem;">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Imagen -->
+      <div class="fade-in">
+        <img
+          src="assets/images/nosotros-local.png"
+          alt="Equipo veterinario de VET365"
+          style="width: 100%; height: 360px; object-fit: cover; border-radius: 1.25rem; box-shadow: 0 20px 60px rgba(0,0,0,0.12);"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Nuestro equipo -->
+  <div style="background-color: #3D9880; margin-top: 5rem; padding: 4rem 0;">
+    <div class="page-container">
+      <div class="fade-in">
+        <p style="color: #F28C28; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; margin-bottom: 0.75rem; text-align: center;">
+          Profesionales
+        </p>
+        <h2 class="heading-xl" style="color: #ffffff; font-weight: 900; line-height: 1.05; margin-bottom: 3rem; text-align: center;">
+          Nuestro equipo
+        </h2>
+
+        <div class="equipo-grid">
+          {equipo.map(vet => (
+            <div class="equipo-card">
+              <div style="overflow: hidden; background-color: #3D9880;">
+                <img
+                  src={vet.imagen}
+                  alt={vet.nombre}
+                  loading="lazy"
+                  style="width: 100%; height: auto; object-fit: contain; display: block; transition: transform 0.4s ease;"
+                  class="equipo-img"
+                />
+              </div>
+              <div style="padding: 1.25rem 0.25rem 0; text-align: center;">
+                <p style="font-weight: 900; font-size: 1rem; color: #ffffff; margin-bottom: 0.25rem;">{vet.nombre}</p>
+                <p style="font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em;">{vet.rol}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.75rem;
+  }
+
+  .equipo-card {
+    cursor: default;
+  }
+
+  .equipo-card:hover .equipo-img {
+    transform: scale(1.04);
+  }
+
+  @media (max-width: 767px) {
+    #nosotros .nosotros-grid {
+      grid-template-columns: 1fr !important;
+    }
+    #nosotros .nosotros-grid > div:last-child img {
+      height: 300px !important;
+    }
+    .equipo-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
