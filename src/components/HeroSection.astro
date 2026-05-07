@@ -1,6 +1,5 @@
 ---
 const whatsappUrl = 'https://wa.me/542644421666';
-const base = import.meta.env.BASE_URL;
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -12,8 +11,8 @@ const base = import.meta.env.BASE_URL;
     class="absolute inset-0 transition-opacity duration-700 opacity-100"
   >
     <picture class="absolute inset-0">
-      <source media="(max-width: 767px)" srcset={`${base}assets/images/hero-1-mobile.png`}>
-      <img src={`${base}assets/images/hero-1.png`} alt="" class="w-full h-full object-cover object-center" fetchpriority="high">
+      <source media="(max-width: 767px)" srcset="assets/images/hero-1-mobile.png">
+      <img src="assets/images/hero-1.png" alt="" class="w-full h-full object-cover object-center" fetchpriority="high">
     </picture>
   </div>
 
@@ -24,8 +23,8 @@ const base = import.meta.env.BASE_URL;
     class="absolute inset-0 transition-opacity duration-700 opacity-0"
   >
     <picture class="absolute inset-0">
-      <source media="(max-width: 767px)" srcset={`${base}assets/images/hero-2-mobile.png`}>
-      <img src={`${base}assets/images/hero-2.png`} alt="" class="w-full h-full object-cover object-center">
+      <source media="(max-width: 767px)" srcset="assets/images/hero-2-mobile.png">
+      <img src="assets/images/hero-2.png" alt="" class="w-full h-full object-cover object-center">
     </picture>
   </div>
 
